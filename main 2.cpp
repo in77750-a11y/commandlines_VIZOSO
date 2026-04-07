@@ -16,11 +16,7 @@ int main(int argc, char * argv[]) {
     bool verbose_dash_x1 = false;
     bool verbose_parallel_or_perpendicular = false;
     bool just_dash_x1 = false;
-//    bool just_dash_y1 = false;
-//    bool first_input = false;
-//    bool second_input = false;
-//    bool third_input = false;
-//    bool fourth_input = false;
+
         
     
     
@@ -46,21 +42,127 @@ int main(int argc, char * argv[]) {
     string dash_y2 = "-y2";
     string dash_x2 = "-x2";
     
+    string perpendicular = "perpendicular";
+    string parallel = "parallel";
+    
+    string Perpendicular = "Perpendicular";
+    string Parallel = "Parallel";
+    
+    
+    
     for(int i = 0; i < argc; i++){
 
         string s = argv[i];
-        //int s = argv[i]
+        
+        //cout << argv[i] << endl;
         
         if(s == "-h" || s == "-H"){
             verbose_dash_h = true;
         }
         
-//        else if(s == "-x1"){
-//            verbose_dash_x1 = true;
-//        }
+        else if((s == "-m" || s == "-M") && i < argc - 1 ){
+            
+                int x1 = stoi(x1_for_point1);
+                double double_x1 = static_cast<double>(x1);
+            
+                int y1 = stoi(y1_for_point1);
+                double double_y1 = static_cast<double>(y1);
         
-        else if((s == "-m" || s == "-M") && (s == "parallel" || s == "Parallel") && (s == "perpendicular" || s == "Perpendicular")){
-            just_dash_x1 = true;
+                int x2 = stoi(x2_for_point2);
+                double double_x2 = static_cast<double>(x2);
+            
+                int y2 = stoi(y2_for_point2);
+                double double_y2 = static_cast<double>(y2);
+            
+                int x3 = stoi(x3_for_point3);
+                double double_x3 = static_cast<double>(x3);
+            
+                int y3 = stoi(y3_for_point3);
+                double double_y3 = static_cast<double>(y3);
+            
+                int x4 = stoi(x4_for_point4);
+                double double_x4 = static_cast<double>(x4);
+            
+                int y4  = stoi(y4_for_point4);
+                double double_y4 = static_cast<double>(y4);
+            
+                double first_slope = (double_y2 - double_y1)/(double_x2 - double_x1);
+            
+                int numerator_slope1 = (y2 - y1);
+                int denominator_slope1 = (x2 - x1);
+            
+                int numerator_slope2 = (y4 - y3);
+                int denominator_slope2 = (x4 - x3);
+            
+                double second_slope = (double_y4 - double_y3)/(double_x4 - double_x3);
+
+            verbose_parallel_or_perpendicular = true;
+            cout << endl;
+            cout << numerator_slope1 << "/" << denominator_slope1 << endl;
+            cout << endl;
+            cout << numerator_slope2 << "/" << denominator_slope2 << endl;
+            
+            cout << endl;
+            if( parallel == argv[i + 1] || Parallel == argv[i + 1] ){
+                //cout << "there is parallel" << endl;
+                if((numerator_slope1 / denominator_slope1) == (numerator_slope2 / denominator_slope2)){
+                    cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")" << endl;
+
+                                cout << endl;
+                
+                    cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")" << endl;
+                
+                                cout << "Both lines are parallel" << endl;
+                            }
+                else{
+                    cout << "There seems to be an ERROR! These Lines aren't parallel" << endl;
+                }
+            }
+            
+            else if (perpendicular == argv[i + 1] || Perpendicular == argv[i + 1]) {
+                //cout << "(there is perpendicular)" << endl;
+                    if ( numerator_slope1 == denominator_slope2 && denominator_slope1 == numerator_slope2) {
+        cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")" << endl;
+                
+                        cout << endl;
+                
+        cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")" << endl;
+                
+            cout << "Both lines are perpendicular" << endl;
+                            }
+                
+                    else if( (numerator_slope1 / (denominator_slope1 == 0) == 0) && ( (numerator_slope2 == 0/denominator_slope2) == 0) ){
+                        cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")  --> This line is Vertical." << endl;
+                    
+                                        cout << endl;
+                                
+                        cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")  --> This line is Horizontal." << endl;
+                                
+                            cout << "Both lines are perpendicular, the only difference is that one line is vertical and the other is horizontal" << endl;
+                    }
+                
+                    else if( ((numerator_slope1 == 0) / denominator_slope1) == 0 && (numerator_slope2 / (denominator_slope2 == 0)) == 0 ){
+                        cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")  --> This line is Horizontal." << endl;
+                                
+                                        cout << endl;
+                                
+                        cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")  --> This line is Vertial." << endl;
+                                
+                            cout << "Both lines are perpendicular, the only difference is that one line is vertical and the other is horizontal" << endl;
+                    }
+                
+                    else{
+                        cout << "There seems to be an ERROR! these lines aren't perpendicular" << endl;
+                        }
+            }
+            
+            else {
+                cout << "The argument isn't parallel or perpendicular." << endl;
+            }
+            
+            
+            cout << endl;
+
         }
         
         else if( (s == "-x1" && i < argc - 1 && i < argc - 2) ){
@@ -102,7 +204,7 @@ int main(int argc, char * argv[]) {
         }
         
         
-        cout << argv[i] << endl;
+        //cout << argv[i] << endl;
 
     }
 
@@ -118,67 +220,13 @@ int main(int argc, char * argv[]) {
             
             
             else if (verbose_parallel_or_perpendicular){
-                cout << "This is where to check if the 2 lines would be parallel or Perpendicular" << endl;
+                //cout << "This is where to check if the 2 lines would be parallel or Perpendicular" << endl;
             }
     
             else if(just_dash_x1){
                 
-                int x1 = stoi(x1_for_point1);
-                double double_x1 = static_cast<double>(x1);
                 
-                int y1 = stoi(y1_for_point1);
-                double double_y1 = static_cast<double>(y1);
-                
-                int x2 = stoi(x2_for_point2);
-                double double_x2 = static_cast<double>(x2);
-                
-                int y2 = stoi(y2_for_point2);
-                double double_y2 = static_cast<double>(y2);
-                
-                int x3 = stoi(x3_for_point3);
-                double double_x3 = static_cast<double>(x3);
-                
-                int y3 = stoi(y3_for_point3);
-                double double_y3 = static_cast<double>(y3);
-                
-                int x4 = stoi(x4_for_point4);
-                double double_x4 = static_cast<double>(x4);
-                
-                int y4  = stoi(y4_for_point4);
-                double double_y4 = static_cast<double>(y4);
-                
-                double first_slope = (double_y2 - double_y1)/(double_x2 - double_x1);
-                double second_slope = (double_y4 - double_y3)/(double_x4 - double_x3);
-                
-                
-                cout << first_slope << " , " << second_slope << endl;
-            
-                
-                
-                cout << endl;
-                
-                if(first_slope == second_slope){
-                    cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")" << endl;
-                    
-    
-                    
-                    cout << endl;
-                    
-                        cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")" << endl;
-                    
-                    cout << "Both lines are parallel" << endl;
-                }
-                else {
-                    cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")" << endl;
-                    
-    
-                    
-                    cout << endl;
-                    
-                        cout << "second line: (" << x3_for_point3 << " , " << y3_for_point3 << ") --- (" << x4_for_point4 << " , " << y4_for_point4 << ")" << endl;
-                    
-                    cout << "Both lines are perpendicular" << endl;
-                }
+
                             
             }
     
