@@ -212,7 +212,6 @@ int main(int argc, char * argv[]) {
             else if(verbose_perpendicular){
                 
                 
-                            
                     int x1 = stoi(x1_for_point1);
                     double double_x1 = static_cast<double>(x1);
                 
