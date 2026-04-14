@@ -247,7 +247,7 @@ int main(int argc, char * argv[]) {
                     int denominator_slope2 = (x4 - x3);
                     int second_slope_int = (numerator_slope2/denominator_slope2);
                     double second_slope = (double_y4 - double_y3)/(double_x4 - double_x3);
-                int reciprocal = (second_slope_int * -1);
+                
                 
                 
                 
@@ -255,11 +255,16 @@ int main(int argc, char * argv[]) {
                             cout << endl;
                 cout << numerator_slope2 << "/" << denominator_slope2 << endl;
                 
-                cout << first_slope_int << endl;
-                cout << endl;
-                cout << second_slope_int << endl;
+                cout << "slope 1: " << first_slope_int << endl;
+                cout << "slope 2: " << second_slope_int << endl;
                 
-                if( first_slope_int * reciprocal == true){
+                cout << "result: " << first_slope_int * second_slope_int << endl;
+                cout << endl;
+                
+                
+                
+                
+                if( first_slope_int * second_slope_int == -1){
                     
                     cout << "First line: (" << x1_for_point1 << " , " << y1_for_point1 << ") --- (" << x2_for_point2 << " , " << y2_for_point2 << ")" << endl;
                                     
